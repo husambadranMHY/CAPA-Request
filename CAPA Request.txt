@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAPA Request Form - Mahoney-Egypt</title>
+    <form method="POST" action="https://formspree.io/f/manoozwa">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Apply Inter font globally */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Style for required fields */
+        label.required::after {
+            content: '*';
+            color: red;
+            margin-left: 0.25rem;
+        }
+         /* Custom scrollbar for textareas */
+        textarea::-webkit-scrollbar {
+            width: 8px;
+        }
+        textarea::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        textarea::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        textarea::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        /* Simple styling for dynamically added action rows */
+        .action-row {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr)) auto; /* 3 columns + remove button */
+            gap: 1rem;
+            align-items: end;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e5e7eb; /* light gray border */
+        }
+         .action-row:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .remove-action-btn {
+            padding: 0.5rem; /* Adjust padding */
+            height: fit-content; /* Fit height to content */
+            line-height: 1; /* Adjust line height */
+        }
+
+    </style>
+</head>
+<body class="bg-gray-100 p-4 md:p-8">
+    <div class="max-w-6xl mx-auto bg-white p-6 md:p-8 rounded-lg shadow-lg">
+        <div class="mb-8 text-center">
+            <h1 class="text-2xl md:text-3xl font-bold text-gray-800">Corrective and Preventive Action (CAPA) Request Form</h1>
+            <p class="text-gray-600 mt-1">Mahoney-Egypt - Quality Assurance</p>
+            <hr class="mt-4">
+             <p class="text-sm text-gray-500 mt-2">CAPA Number: <span class="font-semibold">[To be assigned by QA]</span></p>
+        </div>
+
+        <form action="#" method="POST" id="capa-form">
+            <fieldset class="mb-6 border border-gray-300 p-4 rounded-md">
+                <legend class="text-lg font-semibold text-gray-700 px-2">Initiation</legend>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                    <div>
+                        <label for="request_date" class="block text-sm font-medium text-gray-700 required">Date of Request</label>
+                        <input type="date" id="request_date" name="request_date" required
+                               class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="originator_ref" class="block text-sm font-medium text-gray-700 required">Originator (DRF/NCR #)</label>
+                        <input type="text" id="originator_ref" name="originator_ref" required placeholder="Enter related Deviation or NCR number"
+                               class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="severity" class="block text-sm font-medium text-gray-700 required">Severity</label>
+                        <select id="severity" name="severity" required
+                                class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <option value="">Select Severity</option>
+                            <option value="Major">Major</option>
+                            <option value="Critical">Critical</option>
+                        </select>
+                    </div>
+                    <div class="md:col-span-3">
+                        <label for="affected_departments" class="block text-sm font-medium text-gray-700 required">Affected Department(s)</label>
+                        <input type="text" id="affected_departments" name="affected_departments" required placeholder="List all relevant departments"
+                               class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    </div>
+                     <div class="md:col-span-3">
+                        <label for="issue_description" class="block text-sm font-medium text-gray-700 required">Description of Deviation / Non-Conformity</label>
+                        <textarea id="issue_description" name="issue_description" rows="3" required placeholder="Summarize the issue requiring CAPA (copied from DRF/NCR or elaborated)."
+                                  class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset class="mb-6 border border-gray-300 p-4 rounded-md">
+                <legend class="text-lg font-semibold text-gray-700 px-2">Investigation & Root Cause Analysis (RCA)</legend>
+                <div class="grid grid-cols-1 gap-4 mt-4">
+                    <div>
+                        <label for="investigation_team" class="block text-sm font-medium text-gray-700 required">Investigation Team Members</label>
+                        <input type="text" id="investigation_team" name="investigation_team" required placeholder="List names and departments of team members"
+                               class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="rca_tools" class="block text-sm font-medium text-gray-700">RCA Tools Used</label>
+                        <input type="text" id="rca_tools" name="rca_tools" placeholder="e.g., 5 Whys, Fishbone Diagram, Pareto Chart"
+                               class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="rca_findings_detailed" class="block text-sm font-medium text-gray-700 required">Root Cause Analysis Findings</label>
+                        <textarea id="rca_findings_detailed" name="rca_findings_detailed" rows="5" required placeholder="Detail the identified root cause(s) of the issue. Attach separate RCA report if necessary."
+                                  class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset class="mb-6 border border-gray-300 p-4 rounded-md">
+                <legend class="text-lg font-semibold text-gray-700 px-2">Corrective Actions (CA)</legend>
+                <p class="text-xs text-gray-500 mb-4 px-2">Actions to eliminate the identified root cause(s) and prevent recurrence of this specific issue.</p>
+                <div id="corrective-actions-container" class="space-y-4">
+                    </div>
+                <button type="button" id="add-corrective-action" class="mt-4 px-3 py-2 text-sm bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                    + Add Corrective Action
+                </button>
+            </fieldset>
+
+            <fieldset class="mb-6 border border-gray-300 p-4 rounded-md">
+                <legend class="text-lg font-semibold text-gray-700 px-2">Preventive Actions (PA)</legend>
+                 <p class="text-xs text-gray-500 mb-4 px-2">Actions to eliminate the cause of potential non-conformities or prevent occurrence in other areas/processes.</p>
+                <div id="preventive-actions-container" class="space-y-4">
+                    </div>
+                <button type="button" id="add-preventive-action" class="mt-4 px-3 py-2 text-sm bg-green-500 text-white rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                    + Add Preventive Action
+                </button>
+            </fieldset>
+
+             <fieldset class="mb-6 border border-gray-300 p-4 rounded-md">
+                <legend class="text-lg font-semibold text-gray-700 px-2">Verification of Effectiveness</legend>
+                <div class="grid grid-cols-1 gap-4 mt-4">
+                    <div>
+                        <label for="verification_plan" class="block text-sm font-medium text-gray-700 required">Verification Plan</label>
+                        <textarea id="verification_plan" name="verification_plan" rows="3" required placeholder="Describe how the effectiveness of the implemented CAPA will be verified (e.g., monitoring metrics, follow-up audits, data analysis)."
+                                  class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+                    </div>
+                     <div>
+                        <label for="verification_results_capa" class="block text-sm font-medium text-gray-700">Verification Results</label>
+                        <textarea id="verification_results_capa" name="verification_results_capa" rows="4" placeholder="Document the results of the effectiveness check. Provide objective evidence."
+                                  class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+                         <p class="mt-1 text-xs text-gray-500">To be completed after actions are implemented and verification period is complete.</p>
+                    </div>
+                     <div>
+                        <label for="verification_date_capa" class="block text-sm font-medium text-gray-700">Verification Date</label>
+                        <input type="date" id="verification_date_capa" name="verification_date_capa"
+                               class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="verified_by_capa" class="block text-sm font-medium text-gray-700">Verified By</label>
+                        <input type="text" id="verified_by_capa" name="verified_by_capa"
+                               class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset class="mb-6 border border-dashed border-gray-400 p-4 rounded-md bg-indigo-50">
+                <legend class="text-lg font-semibold text-indigo-700 px-2">CAPA Closure (QA Use Only)</legend>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                    <div class="md:col-span-2">
+                        <label for="closure_comments_capa" class="block text-sm font-medium text-gray-700">Closure Comments</label>
+                        <textarea id="closure_comments_capa" name="closure_comments_capa" rows="2" placeholder="Final comments confirming effectiveness and closure."
+                                  class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+                    </div>
+                    <div>
+                        <label for="closed_by_capa" class="block text-sm font-medium text-gray-700">Closed By (QA Manager)</label>
+                        <input type="text" id="closed_by_capa" name="closed_by_capa" readonly disabled
+                               class="mt-1 block w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md shadow-sm sm:text-sm cursor-not-allowed">
+                    </div>
+                    <div>
+                        <label for="closure_date_capa" class="block text-sm font-medium text-gray-700">Closure Date</label>
+                        <input type="date" id="closure_date_capa" name="closure_date_capa" readonly disabled
+                               class="mt-1 block w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md shadow-sm sm:text-sm cursor-not-allowed">
+                    </div>
+                </div>
+            </fieldset>
+
+            <div class="mt-8 flex justify-end space-x-3">
+                 <button type="button" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                    Save Draft
+                </button>
+                 <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Submit CAPA Request
+                </button>
+                 <button type="button" class="px-4 py-2 bg-green-600 text-white rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                    Close CAPA (QA Only)
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Simple script to add/remove action rows dynamically
+
+        // Function to add a new action row
+        function addActionRow(containerId, typePrefix) {
+            const container = document.getElementById(containerId);
+            const newRow = document.createElement('div');
+            newRow.className = 'action-row';
+            newRow.innerHTML = `
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 required">Action Description</label>
+                    <textarea name="${typePrefix}_description[]" rows="2" required placeholder="Describe the ${typePrefix === 'ca' ? 'corrective' : 'preventive'} action" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 required">Responsible Person/Dept</label>
+                    <input type="text" name="${typePrefix}_responsible[]" required class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 required">Target Date</label>
+                    <input type="date" name="${typePrefix}_target_date[]" required class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                </div>
+                <button type="button" class="remove-action-btn px-3 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 self-end">Remove</button>
+            `;
+            container.appendChild(newRow);
+
+            // Add event listener to the new remove button
+            newRow.querySelector('.remove-action-btn').addEventListener('click', function() {
+                newRow.remove();
+            });
+        }
+
+        // Event listeners for the "Add" buttons
+        document.getElementById('add-corrective-action').addEventListener('click', function() {
+            addActionRow('corrective-actions-container', 'ca');
+        });
+
+        document.getElementById('add-preventive-action').addEventListener('click', function() {
+            addActionRow('preventive-actions-container', 'pa');
+        });
+
+         // Initialize with one row for each action type if needed (optional)
+         // addActionRow('corrective-actions-container', 'ca');
+         // addActionRow('preventive-actions-container', 'pa');
+
+         // Add initial event listeners for any statically added remove buttons (if you uncomment the templates)
+         document.querySelectorAll('.remove-action-btn').forEach(button => {
+             button.addEventListener('click', function() {
+                 button.closest('.action-row').remove();
+             });
+         });
+
+    </script>
+</body>
+</html>
